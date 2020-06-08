@@ -32,9 +32,14 @@ def caller():
     print("-----------------------------------\n")
     score = 0
     marks = 0
-    time.sleep(6)
+    time.sleep(3)
+    qwert=0
+    begng=time.time()
     for i in range(4):
         time.sleep(4)
+        if qwert >=0:
+            qwert +=1
+            print("Q"+str(qwert)+")")
         start=time.time()
         stan=time.time()
         if ask_questions() == True:
@@ -56,6 +61,7 @@ def caller():
             sten=time.time()  
 
             if sten-stan >= 21:
+                print('no mark given')   
                 sound =pyttsx3.init()
 
                 rate =sound.getProperty("rate")
@@ -66,7 +72,7 @@ def caller():
                 #sound.setProperty("voice",voices[1].id) 
                 say = "but your time is finished"
                 sound.say(say)
-                sound.runAndWait()    
+                sound.runAndWait()   
         else:
             marks +=1
             print('Wrong')    
@@ -85,9 +91,18 @@ def caller():
         end=time.time()
         print("used time to answer:",end-start,"seconds")
         if end-start >= 21:    
-            score -=1
-        
+            score -=1  
+        print('-----------------------------------------------------')
+    print('.')
+    endng=time.time()          
     print("your total score is " + str(score) + "/" + str(marks))
+    if endng-begng-marks*4.004 >59 and endng-begng-marks*4.004 <3600:
+        print('your total time used =',(endng-begng-marks*4.004)/60,'minutes')
+    elif endng-begng-marks*4.004 >3599:
+        print('your total time used =',(endng-begng-marks*4.004)/3600,'hours')
+    else:
+        print('your total time used =',endng-begng-marks*4.004,'seconds')
+    time.sleep(3)         
 
     if score > marks/2:
         print(name + " you win")
