@@ -2,7 +2,7 @@ import urllib2
 import json
 
 url = "https://questions.aloc.ng/api/q/7?subject=chemistry"
-urllib2.urlopen(url)
+
 
 json_obj = urllib2.urlopen(url)
 data = json.load(json_obj)
